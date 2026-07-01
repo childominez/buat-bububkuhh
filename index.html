@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spesial Ulang Tahun Zalfa 🎀✨</title>
+    <!-- Menggunakan Font Google yang Estetik & Lembut -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --pink-soft: #FFECEF;
+            --pink-coquette: #FFD1DC;
+            --pink-dark: #B07C7C;
+            --gold-cosmic: #FFE4E1;
+            --cream: #FFFDF9;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--pink-soft), #FFF0F5, #E6E6FA);
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
+        }
+
+        /* --- BACKGROUND ELEMEN TATA SURYA & COQUETTE --- */
+        .cosmic-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite ease-in-out;
+        }
+
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--pink-coquette), #DCD0FF);
+            box-shadow: 0 0 15px rgba(255, 192, 203, 0.5);
+            animation: float-planet 8s infinite ease-in-out;
+        }
+
+        .planet::after {
+            content: '';
+            position: absolute;
+            width: 140%;
+            height: 20%;
+            top: 40%;
+            left: -20%;
+            border: 2px solid rgba(218, 165, 32, 0.3);
+            border-radius: 50%;
+            transform: rotate(-15deg);
+        }
+
+        .ribbon-element {
+            position: absolute;
+            font-size: 24px;
+            opacity: 0.6;
+            animation: float-ribbon 6s infinite ease-in-out;
+        }
+
+        /* --- SCREEN 1: KOTAK HADIAH (WELCOME) --- */
+        .welcome-screen {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            transition: all 1s ease-in-out;
+            background: linear-gradient(135deg, #FFF0F5, var(--pink-soft));
+        }
+
+        .gift-box {
+            font-size: 80px;
+            cursor: pointer;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: pulse-gift 2s infinite;
+        }
+
+        .gift-box:hover {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .welcome-text {
+            margin-top: 20px;
+            color: var(--pink-dark);
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-align: center;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .welcome-sub {
+            font-size: 0.9rem;
+            color: #A37070;
+            margin-top: 5px;
+        }
+
+        /* --- SCREEN 2: UTAMA (KARTU INTERAKTIF) --- */
+        .card-container {
+            width: 90%;
+            max-width: 380px;
+            background: rgba(255, 253, 249, 0.85);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 209, 220, 0.6);
+            border-radius: 30px;
+            padding: 30px 25px;
+            box-shadow: 0 20px 40px rgba(176, 124, 124, 0.15);
+            text-align: center;
+            z-index: 5;
+            opacity: 0;
+            transform: scale(0.8) translateY(50px);
+            transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            pointer-events: none;
+            position: relative;
+        }
+
+        .card-container.active {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            pointer-events: auto;
+        }
+
+        .profile-area {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .main-icon {
+            font-size: 50px;
+            animation: spin-slow 20s infinite linear;
+            display: inline-block;
+        }
+
+        .coquette-bow {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 32px;
+            animation: bounce-bow 3s infinite ease-in-out;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            color: #9E5A5A;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .date-badge {
+            display: inline-block;
+            background: var(--pink-coquette);
+            color: #8C4F4F;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            border: 1px dashed rgba(140, 79, 79, 0.4);
+        }
+
+        .wishes {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        /* --- KUTIPAN MOTIVASI AUDREY HEPBURN --- */
+        .quote-box {
+            background: rgba(255, 236, 239, 0.5);
+            border-left: 3px solid var(--pink-coquette);
+            padding: 15px;
+            border-radius: 0 15px 15px 0;
+            margin-bottom: 25px;
+            text-align: left;
+            position: relative;
+        }
+
+        .quote-text {
+            font-style: italic;
+            font-size: 0.88rem;
+            color: #6B4444;
+            line-height: 1.5;
+        }
+
+        .quote-author {
+            display: block;
+            text-align: right;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--pink-dark);
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- TOMBOL INTERAKTIF --- */
+        .interactive-btn {
+            background: linear-gradient(45deg, #FFD1DC, #FFB6C1);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 182, 193, 0.4);
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .interactive-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 182, 193, 0.6);
+        }
+
+        .interactive-btn:active {
+            transform: translateY(1px);
+        }
+
+        /* --- ANIMASI --- */
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        @keyframes float-planet {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+
+        @keyframes float-ribbon {
+            0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); }
+            50% { transform: translateY(-20px) translateX(10px) rotate(15deg); }
+        }
+
+        @keyframes pulse-gift {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+
+        @keyframes bounce-bow {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-8px); }
+        }
+
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Efek Ledakan Partikel */
+        .particle {
+            position: absolute;
+            pointer-events: none;
+            animation: explode 1s ease-out forwards;
+        }
+
+        @keyframes explode {
+            0% { transform: translate(0, 0) scale(1); opacity: 1; }
+            100% { transform: translate(var(--x), var(--y)) scale(0); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Kosmik & Coquette Background -->
+    <div class="cosmic-bg" id="cosmicBg">
+        <!-- Elemen akan di-generate otomatis oleh JavaScript agar rapi -->
+    </div>
+
+    <!-- Halaman Pembuka (Gift Box) -->
+    <div class="welcome-screen" id="welcomeScreen">
+        <div class="gift-box" onclick="openGift()">🎁</div>
+        <div class="welcome-text">Ada hadiah semesta untuk Zalfa...</div>
+        <div class="welcome-sub">Ketuk kadonya untuk membuka ✨</div>
+    </div>
+
+    <!-- Kartu Utama Kejutan -->
+    <div class="card-container" id="mainCard">
+        <div class="profile-area">
+            <div class="coquette-bow">🎀</div>
+            <div class="main-icon">🪐</div>
+        </div>
+        
+        <h1>Selamat Ulang Tahun, Zalfa!</h1>
+        <div class="date-badge">2 Juli ✨</div>
+        
+        <p class="wishes">
+            Di hari yang istimewa ini, semoga langkahmu selalu dilingkupi kebahagiaan seindah galaksi. Kamu adalah pusat gravitasi keindahan di dunia ini, teruslah bersinar terang seperti bintang yang paling berkilau! 💖
+        </p>
+
+        <!-- Kutipan Tokoh Dunia (Audrey Hepburn) -->
+        <div class="quote-box">
+            <span class="quote-text">
+                "Yang paling penting adalah menikmati hidupmu—menjadi bahagia—itu saja yang terpenting. Tidak ada yang mustahil, kata itu sendiri berkata 'Aku mungkin' (I'm possible)!"
+            </span>
+            <span class="quote-author">— Audrey Hepburn</span>
+        </div>
+
+        <button class="interactive-btn" onclick="triggerCosmicSurprise(event)">Sentuh Keajaiban Semesta ✨</button>
+    </div>
+
+    <script>
+        // Membuat elemen latar belakang secara acak tetapi tetap estetik
+        const cosmicBg = document.getElementById('cosmicBg');
+        const elements = ['✨', '⭐', '🎀', '🌙', '💖'];
+        
+        // Generate Bintang Kecil
+        for (let i = 0; i < 40; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.width = `${Math.random() * 3 + 1}px`;
+            star.style.height = star.style.width;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.animationDelay = `${Math.random() * 3}s`;
+            cosmicBg.appendChild(star);
+        }
+
+        // Generate Elemen Pita & Bintang Dekoratif
+        for (let i = 0; i < 12; i++) {
+            const el = document.createElement('div');
+            el.classList.add('ribbon-element');
+            el.innerText = elements[Math.floor(Math.random() * elements.length)];
+            el.style.top = `${Math.random() * 90}%`;
+            el.style.left = `${Math.random() * 90}%`;
+            el.style.animationDelay = `${Math.random() * 5}s`;
+            el.style.fontSize = `${Math.random() * 10 + 16}px`;
+            cosmicBg.appendChild(el);
+        }
+
+        // Generate 2 Planet Khas Tata Surya yang Lembut
+        for (let i = 0; i < 2; i++) {
+            const planet = document.createElement('div');
+            planet.classList.add('planet');
+            planet.style.width = `${Math.random() * 30 + 30}px`;
+            planet.style.height = planet.style.width;
+            planet.style.top = i === 0 ? '15%' : '75%';
+            planet.style.left = i === 0 ? '10%' : '80%';
+            planet.style.animationDelay = `${i * 2}s`;
+            cosmicBg.appendChild(planet);
+        }
+
+        // Fungsi Membuka Hadiah
+        function openGift() {
+            const welcome = document.getElementById('welcomeScreen');
+            const card = document.getElementById('mainCard');
+            
+            // Animasi transisi menghilang yang halus
+            welcome.style.opacity = '0';
+            welcome.style.transform = 'scale(0.9) translateY(-30px)';
+            
+            setTimeout(() => {
+                welcome.style.display = 'none';
+                card.classList.add('active');
+                // Otomatis picu sedikit letupan bintang saat terbuka
+                autoCelebration();
+            }, 1000);
+        }
+
+        // Efek Kejutan Interaktif saat Tombol Diklik (Particle Burst)
+        function triggerCosmicSurprise(e) {
+            const button = e.target;
+            const rect = button.getBoundingClientRect();
+            const particlesCount = 20;
+            const particleTypes = ['✨', '💖', '🎀', '🌸', '⭐'];
+
+            for (let i = 0; i < particlesCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particle.innerText = particleTypes[Math.floor(Math.random() * particleTypes.length)];
+                particle.style.left = `${rect.left + rect.width / 2}px`;
+                particle.style.top = `${rect.top + rect.height / 2}px`;
+                
+                // Menghitung arah ledakan acak
+                const angle = Math.random() * Math.PI * 2;
+                const velocity = Math.random() * 120 + 60;
+                const x = Math.cos(angle) * velocity;
+                const y = Math.sin(angle) * velocity;
+                
+                particle.style.setProperty('--x', `${x}px`);
+                particle.style.setProperty('--y', `${y}px`);
+                particle.style.fontSize = `${Math.random() * 12 + 14}px`;
+
+                document.body.appendChild(particle);
+
+                // Hapus elemen setelah animasi selesai
+                setTimeout(() => {
+                    particle.remove();
+                }, 1000);
+            }
+        }
+
+        // Letupan otomatis saat kartu pertama kali terbuka
+        function autoCelebration() {
+            const card = document.getElementById('mainCard');
+            const rect = card.getBoundingClientRect();
+            
+            for(let j = 0; j < 3; j++) {
+                setTimeout(() => {
+                    const fakeEvent = {
+                        target: {
+                            getBoundingClientRect: () => ({
+                                left: rect.left + (Math.random() * rect.width),
+                                top: rect.top + (Math.random() * rect.height / 2),
+                                width: 0,
+                                height: 0
+                            })
+                        }
+                    };
+                    triggerCosmicSurprise(fakeEvent);
+                }, j * 300);
+            }
+        }
+    </script>
+</body>
+</html>
